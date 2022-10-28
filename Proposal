@@ -30,7 +30,62 @@
 
 2. Preliminary exploratory data analysis -Adam-
 
+#read data
+tennis_data <- read_csv("/home/jovyan/dsci_groupproject120/atp2017-2019.csv")
 
+#clean & wrangle data
+tennis_data_clean <- tennis_data |>
+                      select(tourney_id, tourney_name, winner_name, winner_ht, winner_age, w_ace) |>
+                      filter(tourney_id == "2019-580") |>
+                      mutate(winner_name = as_factor(winner_name))
+                      #mutate(winning_perct = as_factor(winner_name))
+tennis_data_clean  
+
+#create training data set
+tennis_split <- initial_split(tennis_data_clean, prop = 0.75, strata = tourney_name)
+tennis_train_data <- training(tennis_split)
+
+#summarize data
+tennis_data_summary <- summarize(tennis_train_data,
+                                 num_of_winners = n_distinct(winner_name, na.rm = TRUE),
+                                 avg_height = mean(winner_ht, na.rm = TRUE),
+                                 avg_age = mean(winner_age, na.rm = TRUE),
+                                 avg_aces = mean(w_ace, na.rm = TRUE),
+                                 num_of_na_rows = sum(is.na(winner_ht)))
+tennis_data_summary
+
+# (1) plot player height distribution
+options(repr.plot.width = 10, repr.plot.height = 7)        
+        
+height_distrn <- ggplot(tennis_train_data, aes(x = winner_ht)) +                         
+                      geom_histogram(binwidth = 3) +     
+                      labs(x = "Height (cm)",
+                           y = "Count") +
+                      theme(text = element_text(size = 12)) +  
+                      ggtitle("Distribution of Player Height") 
+height_distrn
+
+# (2) plot player age distribution
+options(repr.plot.width = 10, repr.plot.height = 7)        
+        
+age_distrn <- ggplot(tennis_train_data, aes(x = winner_age)) +                         
+                      geom_histogram(binwidth = 1) +     
+                      labs(x = "Age (yrs)",
+                           y = "Count") +
+                      theme(text = element_text(size = 12)) +  
+                      ggtitle("Distribution of Player Age")
+age_distrn
+
+# (3) plot player ace distribution
+options(repr.plot.width = 10, repr.plot.height = 7)        
+        
+ace_distrn <- ggplot(tennis_train_data, aes(x = w_ace)) +                         
+                      geom_histogram(binwidth = 2) +     
+                      labs(x = "Number of Aces",
+                           y = "Count") +
+                      theme(text = element_text(size = 12)) +  
+                      ggtitle("Distribution of Aces")
+ace_distrn
 
 
 
