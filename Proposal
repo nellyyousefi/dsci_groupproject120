@@ -1,15 +1,15 @@
 
 
-1. Title, Introduction, Formatting, Grammar/Spelling check, Submission  -Nelly- 
+1. Title, Introduction, Formatting, Grammar/Spelling check, Submission  -Weena- 
 
 
 
-
-
-
-
-
-
+For our Data Science project, we decided upon working with the Tennis Data, (https://drive.google.com/uc?export=download&id=1fOQ8sy_qMkQiQEAO6uFdRX4tLI8EpSTn) 
+as it felt the most relatable to some members of the group. Between the two options of data sets, 
+we found that “Game Results for Top 500 Players From 2017 – 2019” was favourable, as it provides the relevant observations that we would need. 
+By working with this data set, we can look to find patterns within our variables (age, height, number of winning aces). 
+The question we want to ask is, “How accurately do the variables within the data set predict the top players in the 
+2019 Australian Open Tournament at least 70% or above?”
 
 
 
@@ -108,7 +108,7 @@ ace_distrn
 
 
 
-3.expected outcomes and significance   -Weena-
+3.expected outcomes and significance   -Nelly-
 
 
 
