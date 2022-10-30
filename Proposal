@@ -1,37 +1,42 @@
 
 
-1. Title, Introduction, Formatting, Grammar/Spelling check, Submission  -Weena- 
+Group 120 Project Proposal 
+
+Nelly Yousefi, Adam Hardy, Kristen Tien, Weena Wibowo
+
+Introduction:
+
+The team has selected to work with the Tennis Data atp2017-2019.csv due to the variety of interesting variables and data available to work with. 
+Between the two tennis data sets, the "Game Results for Top 500 Players from 2017-2019" was favorable as the team was interested in selecting specific variables to predict some of the top tennis players. 
+After analyzing and understanding the data in this data set, three variables were selected to predict the top tennis players. There are player age, player height, and number of aces per game of each winning player.
+
+The columns that will be pulled from the data are as follows.
+
+- tourney_id - unique identifier for each tournament
+- tourney_name - name of tournament
+- winner_name - name of winning player
+- winner-ht - height of winning player in centimeters
+- winner_age - age of winning player
+w_aces - winning player number of aces
+
+As a result, the question to answer can be defined as the following. 
+
+How accurately can the three above-mentioned variables predict the top five players in the 2019 Australian Open Tournament?
 
 
+Preliminary exploratory data analysis:
 
-For our Data Science project, we decided upon working with the Tennis Data, (https://drive.google.com/uc?export=download&id=1fOQ8sy_qMkQiQEAO6uFdRX4tLI8EpSTn) 
-as it felt the most relatable to some members of the group. Between the two options of data sets, 
-we found that “Game Results for Top 500 Players From 2017 – 2019” was favourable, as it provides the relevant observations that we would need. 
-By working with this data set, we can look to find patterns within our variables (age, height, number of winning aces). 
-The question we want to ask is, “How accurately do the variables within the data set predict the top players in the 
-2019 Australian Open Tournament at least 70% or above?”
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2. Preliminary exploratory data analysis -Adam-
+library(tidyverse)
+library(repr)
+library(readxl)
+library(tidymodels)
+source("tests.R")
+source("cleanup.R")
+options(repr.matrix.max.rows = 6)
 
 #read data
 tennis_data <- read_csv("/home/jovyan/dsci_groupproject120/atp2017-2019.csv")
+tennis_data
 
 #clean & wrangle data
 tennis_data_clean <- tennis_data |>
@@ -88,53 +93,25 @@ ace_distrn <- ggplot(tennis_train_data, aes(x = w_ace)) +
 ace_distrn
 
 
+Methods:
+
+Firstly we completed all of the steps above for our preliminary exploratory data analysis. 
+This resulted in our data being condensed into 6 columns/variables, 
+tourney_id, tourney_name, winner_name, winner_ht, winner_age, w_ace and rows with only data from the 2019 Australian open, 
+which have the tourney_id of 2019-580 . To answer our question, we will use our training data set, which is 75% of our original data, 
+to train our classification model in combination with cross validation to find the overall accuracy of the predictors. 
+We will compare the top players we arrived at from our analysis to the top players based off of win percentage. 
+As for visualization, we will make different plots to compare the different variables.
 
 
+Expected outcomes and significance:
 
+The expected findings of this project are that the three variables examined (height, age, and the number of aces) will be able to predict the winners of a tennis match with an accuracy of above 70%. 
+However, these variables are not comprehensive as many factors can affect the outcomes of a tennis game, so future exploration could consider many other variables such as the number of serve 
+points or break points scored. Additionally, a future analysis could combine all of these variables as predictors and would likely improve the prediction accuracy for this model.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3.expected outcomes and significance   -Nelly-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4.Expected outcomes and significance -Kristen-
-
-The expected findings of this project are that the three variables examined (height, age, and the number of aces) will be able to predict the winners
-of a tennis match with an accuracy of above 70%. However, these variables are not comprehensive as many factors can affect the outcomes of a tennis
-game, so future exploration could consider many other variables such as the number of serve points or break points scored. Additionally, a future 
-analysis could combine all of these variables as predictors and would likely improve the prediction accuracy for this model.
-
-
-The findings from this project could be extrapolated for tennis players to see which physical characteristics or skills are favorable for them to win
-a match. This information could be important for tennis players to examine which skills or characteristics are present in those with a high winning
-rate and allow them to choose a specific focus to improve on in order to become a stronger competitor.
-
+The findings from this project could be extrapolated for tennis players to see which physical characteristics or skills are favorable for them to win a match. This information could be important for 
+tennis players to examine which skills or characteristics are present in those with a high winning rate and allow them to choose a specific focus to improve on in order to become a stronger competitor.
 
 
 
